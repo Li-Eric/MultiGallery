@@ -19,9 +19,9 @@ If you want to build this app, you must first obtain your own API keys from 500p
 
 Image Loading!
 
-- **greedo-layout-for-android**
+- **GreedoLayout**
 
-Recycler View's dynamic image sizing!
+To preserve ratio of photos in the RecyclerView
 <br />
 <br />
 
