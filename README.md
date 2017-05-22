@@ -9,12 +9,6 @@ If you want to build this app, you must first obtain your own API keys from 500p
 + Dynamic Sizing for RecyclerView
 + Works with both Flickr and 500px
 
-## TODO
-+ Add support for more sites
-+ Make the ratio-getting Async task speedier
-+ Make the UI prettier
-+ Add zoom on touch
-
 ## Libraries
 - **Picasso**
 
