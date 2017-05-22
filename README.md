@@ -28,4 +28,4 @@ To preserve ratio of photos in the RecyclerView
 
 <img src="https://raw.githubusercontent.com/Li-Eric/resources/master/Screenshot_2017-05-21-02-16-14.jpg?token=AONm9bdBsbcfMNSe6U-XS3fYW8x9wRZ7ks5ZKm-awA%3D%3D" width="45%"> </img> <img src="https://raw.githubusercontent.com/Li-Eric/resources/master/Screenshot_2017-05-21-02-16-03.jpg?token=AONm9SatAUlyToX7kb3Ut-dj89E_u61pks5ZKm-dwA%3D%3D" width="45%"> </img>
 
-<img src="https://raw.githubusercontent.com/Li-Eric/resources/master/Screenshot_2017-05-21-21-39-12.jpg?token=AONm9d_G-b35X8RGrE3cM_VRD6Q8FNCkks5ZK4LjwA%3D%3D"> </img> <img src="https://raw.githubusercontent.com/Li-Eric/resources/master/Screenshot_2017-05-21-21-35-31.jpg?token=AONm9Xqtw08LTXAQM9-yyfByGw702lsYks5ZK4LhwA%3D%3D"> </img>
+<img src="https://raw.githubusercontent.com/Li-Eric/resources/master/Screenshot_2017-05-21-21-39-12.jpg?token=AONm9d_G-b35X8RGrE3cM_VRD6Q8FNCkks5ZK4LjwA%3D%3D" width="45%"> </img> <img src="https://raw.githubusercontent.com/Li-Eric/resources/master/Screenshot_2017-05-21-21-35-31.jpg?token=AONm9Xqtw08LTXAQM9-yyfByGw702lsYks5ZK4LhwA%3D%3D" width="45%"> </img>
