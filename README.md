@@ -1,4 +1,4 @@
-# PhotoGallery
+# MultiGallery
 A Photo Gallery for Android. Currently works with 500px and Flickr.
 
 If you want to build this app, you must first obtain your own API keys from 500px and Flickr.
