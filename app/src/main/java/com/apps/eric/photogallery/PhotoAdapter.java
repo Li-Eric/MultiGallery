@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Created by Eric on 5/21/2017.
  */
-class PhotoAdapter extends RecyclerView.Adapter<PhotoHolder>
+public class PhotoAdapter extends RecyclerView.Adapter<PhotoHolder>
         implements GreedoLayoutSizeCalculator.SizeCalculatorDelegate {
 
     private PhotoGalleryFragment mPhotoGalleryFragment;

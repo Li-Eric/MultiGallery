@@ -3,12 +3,12 @@
 
     <item
         is-multidex="false"
-        jar="C:\Users\Eric\.android\build-cache\3205f59b8dd4061049659a74ee8c3a19a158066a\output\jars\classes.jar"
+        jar="C:\Users\Eric\.android\build-cache\8e9cfc2f689ffe271926b23eb677c5db295ef412\output\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.3"
-        sha1="b40967f382d622b77f87499d417af2e3a2085560">
-        <dex dex="C:\Users\Eric\Documents\AndroidStudioProjects\PhotoGallery\app\build\intermediates\pre-dexed\debug\classes_c01169fd82a8e2dde826fa17cca75bdb7ea9b510.jar" />
+        sha1="d4cf6227dd6a2ceff0f7dcf0c324380b7abf2c28">
+        <dex dex="C:\Users\Eric\Documents\PhotoGallery\app\build\intermediates\pre-dexed\debug\classes_7e44fdd28dd18b2490879094871c51c5675a284c.jar" />
     </item>
     <item
         is-multidex="false"
@@ -18,6 +18,24 @@
         revision="25.0.3"
         sha1="7446d06ec8d4f7ffcc53f1da37c95f200dcb9387">
         <dex dex="C:\Users\Eric\Documents\AndroidStudioProjects\PhotoGallery\app\build\intermediates\pre-dexed\debug\picasso-2.5.2_6946cfa98be397ce3336789d14d13e60f6147a9c.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Eric\.android\build-cache\3205f59b8dd4061049659a74ee8c3a19a158066a\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="b40967f382d622b77f87499d417af2e3a2085560">
+        <dex dex="C:\Users\Eric\Documents\AndroidStudioProjects\PhotoGallery\app\build\intermediates\pre-dexed\debug\classes_c01169fd82a8e2dde826fa17cca75bdb7ea9b510.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Eric\.android\build-cache\7550d8a5bf4b2d084667c5fd73bf4993090f73dc\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="38789e20ace9ab7dbd00554bd2673ab424478d3b">
+        <dex dex="C:\Users\Eric\Documents\PhotoGallery\app\build\intermediates\pre-dexed\debug\classes_8caf7266af65200b50b422a15acb77ae05a94ea1.jar" />
     </item>
 
 </items>

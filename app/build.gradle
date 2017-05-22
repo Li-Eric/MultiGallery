@@ -34,4 +34,5 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:25.3.1'
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.fivehundredpx:greedo-layout:1.1.0'
+    compile 'com.android.support:design:25.3.1'
 }

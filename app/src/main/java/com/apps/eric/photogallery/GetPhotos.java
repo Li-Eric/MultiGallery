@@ -22,15 +22,27 @@ import java.util.List;
 
 public class GetPhotos {
 
+    private int mCode = 0;
+
     private static final String TAG = "GetPhotos";
 
-    private static final String API_KEY = "";
-    private static final String FETCH_RECENTS_METHOD = "https://api.500px.com/v1/photos";
-    private static final String SEARCH_METHOD = "https://api.500px.com/v1/photos/search";
+    private static final String API_KEY_500px = ""; // ADD YOUR OWN KEY HERE
+    private static final String FETCH_RECENTS_METHOD_500px = "https://api.500px.com/v1/photos";
+    private static final String SEARCH_METHOD_500px = "https://api.500px.com/v1/photos/search";
     private static final String NUM_OF_PHOTOS = "100";
     private static final String IMAGE_SIZE = "20";
 
-
+    private static final String API_KEY_FLICKR = ""; // ADD YOUR OWN KEY HERE
+    private static final String FETCH_RECENTS_METHOD_FLICKR = "flickr.photos.getRecent";
+    private static final String SEARCH_METHOD_FLICKR = "flickr.photos.search";
+    private static final Uri FLICKR_ENDPOINT = Uri
+            .parse("https://api.flickr.com/services/rest/")
+            .buildUpon()
+            .appendQueryParameter("api_key", API_KEY_FLICKR)
+            .appendQueryParameter("format", "json")
+            .appendQueryParameter("nojsoncallback", "1")
+            .appendQueryParameter("extras", "url_s")
+            .build();
 
     public byte[] getUrlBytes(String urlSpec) throws IOException {
         URL url = new URL(urlSpec);
@@ -59,13 +71,27 @@ public class GetPhotos {
         return new String(getUrlBytes(urlSpec));
     }
 
-    public List<GalleryItem> fetchRecentPhotos() {
-        String url = buildUrl(FETCH_RECENTS_METHOD, null);
+    public List<GalleryItem> fetchRecentPhotos(int code) {
+        String url ="";
+        mCode = code;
+        if (code == 0) {
+            url = buildUrl500px(FETCH_RECENTS_METHOD_500px, null);
+        } else if (code == 1){
+            url =  buildUrlFlickr(FETCH_RECENTS_METHOD_FLICKR, null);
+
+        }
         return downloadGalleryItems(url);
     }
 
-    public List<GalleryItem> searchPhotos(String query) {
-        String url = buildUrl(SEARCH_METHOD, query);
+    public List<GalleryItem> searchPhotos(String query, int code) {
+        String url = "";
+        mCode = code;
+        if (code == 0) {
+            url = buildUrl500px(SEARCH_METHOD_500px, query);
+        } else if (code == 1){
+            url = buildUrlFlickr(SEARCH_METHOD_FLICKR, query);
+        }
+
         Log.i(TAG, url);
         return downloadGalleryItems(url);
     }
@@ -87,41 +113,71 @@ public class GetPhotos {
         return items;
     }
 
-    private String buildUrl(String method, String query){
+    private String buildUrl500px(String method, String query){
         Uri ENDPOINT = Uri
                 .parse(method)
                 .buildUpon()
-                .appendQueryParameter("consumer_key", API_KEY)
+                .appendQueryParameter("consumer_key", API_KEY_500px)
                 .appendQueryParameter("rpp", NUM_OF_PHOTOS)
                 .appendQueryParameter("image_size", IMAGE_SIZE)
                 .build();
 
         Uri.Builder uriBuilder = ENDPOINT.buildUpon();
 
-        if (method.equals(SEARCH_METHOD)){
+        if (method.equals(SEARCH_METHOD_500px)){
             uriBuilder.appendQueryParameter("term", query);
         }
 
         return uriBuilder.build().toString();
     }
 
+    private String buildUrlFlickr(String method, String query) {
+        Uri.Builder uriBuilder = FLICKR_ENDPOINT.buildUpon()
+                .appendQueryParameter("method", method);
+        if (method.equals(SEARCH_METHOD_FLICKR)) {
+            uriBuilder.appendQueryParameter("text", query);
+        }
+        return uriBuilder.build().toString();
+    }
+
     private void parseItems(List<GalleryItem> items, JSONObject jsonBody) throws IOException,
                             JSONException{
-        JSONArray photoJsonArray = jsonBody.getJSONArray("photos");
+        JSONObject photosJsonObject;
+        JSONArray photoJsonArray;
+        if (mCode == 0){
+            photoJsonArray = jsonBody.getJSONArray("photos");
+        } else {
+            photosJsonObject = jsonBody.getJSONObject("photos");
+            photoJsonArray = photosJsonObject.getJSONArray("photo");
+        }
 
-        for (int i = 0; i < photoJsonArray.length(); i++){
-            JSONObject photoJsonObject = photoJsonArray.getJSONObject(i);
+        if (mCode == 0) {
+            for (int i = 0; i < photoJsonArray.length(); i++) {
+                JSONObject photoJsonObject = photoJsonArray.getJSONObject(i);
 
-            GalleryItem item = new GalleryItem();
-            item.setId(photoJsonObject.getString("name"));
-            item.setCaption(photoJsonObject.getString("name"));
+                GalleryItem item = new GalleryItem();
+                item.setId(photoJsonObject.getString("name"));
+                item.setCaption(photoJsonObject.getString("name"));
 
-            if (!photoJsonObject.has("image_url")){
-                continue;
+                if (!photoJsonObject.has("image_url")) {
+                    continue;
+                }
+                Log.i(TAG, photoJsonObject.getString("image_url"));
+                item.setUrl(photoJsonObject.getString("image_url"));
+                items.add(item);
             }
-            Log.i(TAG, photoJsonObject.getString("image_url"));
-            item.setUrl(photoJsonObject.getString("image_url"));
-            items.add(item);
+        } else {
+            for (int i = 0; i < photoJsonArray.length(); i++) {
+                JSONObject photoJsonObject = photoJsonArray.getJSONObject(i);
+                GalleryItem item = new GalleryItem();
+                item.setId(photoJsonObject.getString("id"));
+                item.setCaption(photoJsonObject.getString("title"));
+                if (!photoJsonObject.has("url_s")) {
+                    continue;
+                }
+                item.setUrl(photoJsonObject.getString("url_s"));
+                items.add(item);
+            }
         }
     }
 }

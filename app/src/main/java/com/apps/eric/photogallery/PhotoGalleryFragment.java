@@ -31,6 +31,8 @@ public class PhotoGalleryFragment extends Fragment{
 
     private static final String TAG = "PhotoGalleryFragment";
 
+    private int whichApp = 0; // 0: 500px, 1:flickr
+
     private RecyclerView mPhotoRecyclerView;
     private List<GalleryItem> mItems = new ArrayList<>();
     protected List<Double> mRatios = new ArrayList<>();
@@ -50,7 +52,7 @@ public class PhotoGalleryFragment extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState){
-        View v = inflater.inflate(R.layout.fragment_photo_gallery, container, false);
+        View v = inflater.inflate(R.layout.fragment_photo_gallery_500px, container, false);
         GreedoLayoutManager layoutManager = new GreedoLayoutManager(new PhotoAdapter(this, mItems));
         layoutManager.setMaxRowHeight(MeasUtils.dpToPx(200, getActivity()));
 
@@ -83,8 +85,6 @@ public class PhotoGalleryFragment extends Fragment{
                 return true;
             }
 
-
-
             @Override
             public boolean onQueryTextChange(String s){
                 Log.d(TAG, "QueryTextChange: " + s);
@@ -108,6 +108,18 @@ public class PhotoGalleryFragment extends Fragment{
                 MyPreferences.setStoredQuery(getActivity(), null);
                 updateItems();
                 return true;
+            case R.id.flickr:
+                if (whichApp != 1){
+                    whichApp = 1;
+                    updateItems();
+                }
+                return true;
+            case R.id.five_hundredpx:
+                if (whichApp != 0){
+                    whichApp = 0;
+                    updateItems();
+                }
+
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -115,7 +127,7 @@ public class PhotoGalleryFragment extends Fragment{
 
     private void updateItems(){
         String query = MyPreferences.getStoredQuery(getActivity());
-        new FetchItemsTask(query).execute();
+        new FetchItemsTask(query, whichApp).execute();
     }
 
     private void setupAdapter(){
@@ -126,18 +138,20 @@ public class PhotoGalleryFragment extends Fragment{
 
     private class FetchItemsTask extends AsyncTask<Void,Void,List<GalleryItem>> {
         private String mQuery;
+        private int mCode;
 
-        public FetchItemsTask(String query){
+        public FetchItemsTask(String query, int code){
             mQuery = query;
+            mCode = code;
         }
 
         @Override
         protected List<GalleryItem> doInBackground(Void... params) {
 
             if (mQuery == null){
-                return new GetPhotos().fetchRecentPhotos();
+                return new GetPhotos().fetchRecentPhotos(mCode);
             } else {
-                return new GetPhotos().searchPhotos(mQuery);
+                return new GetPhotos().searchPhotos(mQuery, mCode);
             }
         }
 

@@ -10,4 +10,12 @@
     <item android:id="@+id/menu_item_clear"
           android:title="@string/clear_search"
           app:showAsAction="never"/>
+
+    <item android:id="@+id/flickr"
+          android:title="@string/flickr"
+          app:showAsAction="never"/>
+
+    <item android:id="@+id/five_hundredpx"
+          android:title="@string/five_hundredpx"
+          app:showAsAction="never"/>
 </menu>

@@ -2,4 +2,6 @@
     <string name="app_name">PhotoGallery</string>
     <string name="search">Search</string>
     <string name="clear_search">Clear Search</string>
+    <string name="flickr">Flickr</string>
+    <string name="five_hundredpx">500px</string>
 </resources>
