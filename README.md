@@ -17,6 +17,8 @@ Image Loading!
 - **GreedoLayout**
 
 To preserve ratio of photos in the RecyclerView
+
+- **MeasUtils by Julian Villella** 
 <br />
 <br />
 
