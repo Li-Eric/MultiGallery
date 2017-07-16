@@ -12,7 +12,7 @@ If you want to build this app, you must first obtain your own API keys from 500p
 ## Libraries
 - **Picasso**
 
-Image Loading!
+Image Loading and caching.
 
 - **GreedoLayout**
 
